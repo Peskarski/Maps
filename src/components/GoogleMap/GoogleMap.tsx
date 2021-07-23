@@ -3,10 +3,11 @@ import GoogleMapReact from 'google-map-react';
 import { MapType } from './types';
 import { Marker } from './Marker';
 import locations from '../../MOCK_DATA.json';
+import styles from './GoogleMap.module.css';
 
 export const GoogleMap: React.FC<MapType> = ({ center, zoom }) => {
   return (
-    <div style={{ height: '800px', width: '60%' }}>
+    <div className={styles.map}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: `${process.env.REACT_APP_API_KEY}` }}
         defaultCenter={center}

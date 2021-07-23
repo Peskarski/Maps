@@ -1,0 +1,16 @@
+.layout {
+  margin: 16px 100px;
+}
+
+.header {
+  text-align: center;
+}
+
+.content {
+  display: flex;
+}
+
+.sider {
+  text-align: center;
+  border: 1px solid black;
+}
