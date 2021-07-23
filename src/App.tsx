@@ -1,5 +1,6 @@
 import React from 'react';
 import { GoogleMap } from './components/GoogleMap';
+import { ItemsList } from './components/ItemsList';
 import { Layout } from 'antd';
 import styles from './App.module.css';
 
@@ -17,7 +18,7 @@ const App: React.FC = () => {
       <Content className={styles.content}>
         <GoogleMap center={{ lat: 53.893009, lng: 27.567444 }} zoom={8} />
         <Sider width="25%" className={styles.sider}>
-          <h2>People</h2>
+          <ItemsList />
         </Sider>
       </Content>
     </Layout>

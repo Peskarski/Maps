@@ -1,0 +1,14 @@
+.list ul {
+  list-style-type: none;
+}
+
+.list li {
+  margin: 10px auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.list li p {
+  margin-left: 20px
+}
