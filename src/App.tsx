@@ -1,24 +1,13 @@
 import React from 'react';
-import { Loader } from '@googlemaps/js-api-loader';
+import { GoogleMap } from './components/GoogleMap';
 
-const loader = new Loader({
-  apiKey: `${process.env.REACT_APP_API_KEY}`,
-  version: 'weekly',
-});
-
-let map: google.maps.Map;
-
-loader.load().then(() => {
-  map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
-  });
-});
+const title = 'Maps';
 
 const App: React.FC = () => {
   return (
     <div>
-      <h1>Maps</h1>
+      <h1>{title}</h1>
+      <GoogleMap center={{ lat: 53.893009, lng: 27.567444 }} zoom={8} />
     </div>
   );
 };
