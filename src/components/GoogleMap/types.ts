@@ -1,9 +1,7 @@
-export type MapType = {
+import { ListItem } from '../ItemsList/types';
+
+export interface MapInterface {
   center: { lat: number; lng: number };
   zoom: number;
-};
-
-export type MarkerType = {
-  lat: number;
-  lng: number;
-};
+  setListOnBoundsChanged: (markers: ListItem[]) => void;
+}
