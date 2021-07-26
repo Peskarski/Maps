@@ -4,6 +4,7 @@ import { ItemsList } from './components/ItemsList';
 import { Layout } from 'antd';
 import styles from './App.module.css';
 import { ListItem } from './components/ItemsList/types';
+import 'antd/dist/antd.css';
 
 const title = 'Maps';
 
@@ -21,16 +22,18 @@ const App: React.FC = () => {
       <Header className={styles.header}>
         <h1>{title}</h1>
       </Header>
-      <Content className={styles.content}>
-        <GoogleMap
-          center={{ lat: 53.893009, lng: 27.567444 }}
-          zoom={5}
-          setListOnBoundsChanged={setListOnBoundsChanged}
-        />
-        <Sider width="25%" className={styles.sider}>
+      <Layout>
+        <Content>
+          <GoogleMap
+            center={{ lat: 53.893009, lng: 27.567444 }}
+            zoom={5}
+            setListOnBoundsChanged={setListOnBoundsChanged}
+          />
+        </Content>
+        <Sider width="25%" className={styles.sider} theme="light">
           <ItemsList list={list} />
         </Sider>
-      </Content>
+      </Layout>
     </Layout>
   );
 };
