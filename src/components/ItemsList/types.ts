@@ -7,6 +7,7 @@ export type ListItem = {
   avatar: string;
 };
 
-export type ListType = {
+export interface ListInterface {
   list: ListItem[];
-};
+  setMarkersOnListChange: (markers: ListItem[]) => void;
+}
