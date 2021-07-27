@@ -3,19 +3,28 @@ import { List, Avatar } from 'antd';
 import { Pagination } from 'antd';
 import styles from './ItemsList.module.css';
 import { ListInterface, ListItem } from './types';
+import { getDistanceFromLatLonInKm } from './utils';
 
 const header = 'Robots';
 const DEFAULT_CURRENT_PAGE = 1;
 const ITEMS_PER_PAGE = 10;
 
-export const ItemsList: React.FC<ListInterface> = ({ list, setMarkersOnListChange }) => {
+export const ItemsList: React.FC<ListInterface> = ({ list, currentPosition, setMarkersOnListChange }) => {
   const [renderedList, setRenderedList] = useState<ListItem[]>([]);
   const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
   const changeMarkersAfterListChanged = () => {
     const listPart = list.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
-    setRenderedList(listPart);
-    setMarkersOnListChange(listPart);
+    const listPartWithDistances = listPart.map((item) => {
+      return currentPosition
+        ? {
+            ...item,
+            distance: getDistanceFromLatLonInKm(item.lat, item.lng, currentPosition.lat, currentPosition.lng),
+          }
+        : item;
+    });
+    setRenderedList(listPartWithDistances);
+    setMarkersOnListChange(listPartWithDistances);
   };
 
   useEffect(() => {
@@ -27,10 +36,6 @@ export const ItemsList: React.FC<ListInterface> = ({ list, setMarkersOnListChang
     changeMarkersAfterListChanged();
   }, [list]);
 
-  const handlePaginationChange = (currentPage: number) => {
-    setCurrentPage(currentPage);
-  };
-
   return (
     <div>
       <h2>{header}</h2>
@@ -38,7 +43,7 @@ export const ItemsList: React.FC<ListInterface> = ({ list, setMarkersOnListChang
         defaultCurrent={1}
         current={currentPage}
         total={list.length}
-        onChange={handlePaginationChange}
+        onChange={(currentPage) => setCurrentPage(currentPage)}
         pageSize={10}
         showSizeChanger={false}
       />
@@ -49,7 +54,16 @@ export const ItemsList: React.FC<ListInterface> = ({ list, setMarkersOnListChang
         renderItem={(item) => (
           <List.Item>
             <List.Item.Meta avatar={<Avatar src={item.avatar} />} />
-            <p> {`${item.first_name} ${item.last_name}`}</p>
+            <div className={styles.info}>
+              <div className={styles.name}>
+                <p> {`${item.first_name} ${item.last_name}`}</p>
+              </div>
+              {currentPosition && (
+                <div>
+                  <p>{`${item.distance} km`}</p>
+                </div>
+              )}
+            </div>
           </List.Item>
         )}
       />

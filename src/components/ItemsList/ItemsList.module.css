@@ -3,6 +3,13 @@
   margin: auto;
 }
 
-.list li p {
-  margin: auto 30% auto auto;
+.list li .info {
+  width: 90%;
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list li .info p {
+  margin: auto 20px;
 }
