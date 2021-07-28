@@ -15,6 +15,7 @@ export const ItemsList: React.FC<ListInterface> = ({ list, currentPosition, setM
 
   const changeMarkersAfterListChanged = () => {
     const listPart = list.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+
     const listPartWithDistances = listPart.map((item) => {
       return currentPosition
         ? {

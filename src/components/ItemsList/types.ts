@@ -1,4 +1,4 @@
-import { Coordinates } from '../GoogleMap/types';
+import { Coordinates, Bounds } from '../GoogleMap/types';
 
 export type ListItem = {
   id: number;

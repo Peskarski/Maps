@@ -8,7 +8,6 @@ import { Coordinates } from './components/GoogleMap/types';
 import 'antd/dist/antd.css';
 
 const title = 'Maps';
-const DEFAULT_CENTER = { lat: 53.893009, lng: 27.567444 };
 
 const App: React.FC = () => {
   const { Header, Sider, Content } = Layout;
@@ -42,8 +41,6 @@ const App: React.FC = () => {
       <Layout>
         <Content>
           <GoogleMap
-            center={DEFAULT_CENTER}
-            zoom={5}
             setListOnBoundsChanged={setListOnBoundsChanged}
             markers={markers}
             currentPosition={currentPosition}
