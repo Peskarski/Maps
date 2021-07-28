@@ -2,3 +2,10 @@
   height: 800px;
   width: 100%;
 }
+
+.checkbox {
+  left: 20px;
+  top: 20px;
+  color: red;
+  /* margin: 20px auto auto 20px; */
+}

@@ -12,3 +12,10 @@ export type Coordinates = {
   lat: number;
   lng: number;
 };
+
+export type Bounds = {
+  ne: Coordinates;
+  nw: Coordinates;
+  se: Coordinates;
+  sw: Coordinates;
+};
