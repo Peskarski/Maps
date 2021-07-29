@@ -3,6 +3,7 @@ import { ListItem } from '../ItemsList/types';
 export interface MapInterface {
   markers: ListItem[];
   currentPosition: Coordinates | null;
+  activeMarker: number | null;
   setListOnBoundsChanged: (markers: ListItem[]) => void;
 }
 

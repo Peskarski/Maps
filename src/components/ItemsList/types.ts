@@ -1,4 +1,4 @@
-import { Coordinates, Bounds } from '../GoogleMap/types';
+import { Coordinates } from '../GoogleMap/types';
 
 export type ListItem = {
   id: number;
@@ -14,4 +14,5 @@ export interface ListInterface {
   list: ListItem[];
   currentPosition: Coordinates | null;
   setMarkersOnListChange: (markers: ListItem[]) => void;
+  setActiveMarkerOnHover: (item: ListItem | null) => void;
 }
