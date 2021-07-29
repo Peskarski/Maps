@@ -15,6 +15,7 @@ const App: React.FC = () => {
   const [list, setList] = useState<ListItem[]>([]);
   const [markers, setMarkers] = useState<ListItem[]>([]);
   const [currentPosition, setCurrentPosition] = useState<Coordinates | null>(null);
+  const [activeMarker, setActiveMarker] = useState<number | null>(null);
 
   const gotPositionSuccessfully = (pos: any) => {
     const { latitude, longitude } = pos.coords;
@@ -33,6 +34,14 @@ const App: React.FC = () => {
     setMarkers(robots);
   };
 
+  const setActiveMarkerOnListItemHover = (item: ListItem | null) => {
+    if (item) {
+      setActiveMarker(item.id);
+    } else {
+      setActiveMarker(null);
+    }
+  };
+
   return (
     <Layout className={styles.layout}>
       <Header className={styles.header}>
@@ -44,10 +53,16 @@ const App: React.FC = () => {
             setListOnBoundsChanged={setListOnBoundsChanged}
             markers={markers}
             currentPosition={currentPosition}
+            activeMarker={activeMarker}
           />
         </Content>
         <Sider width="25%" className={styles.sider} theme="light">
-          <ItemsList list={list} setMarkersOnListChange={setMarkersOnListChange} currentPosition={currentPosition} />
+          <ItemsList
+            list={list}
+            setMarkersOnListChange={setMarkersOnListChange}
+            currentPosition={currentPosition}
+            setActiveMarkerOnHover={setActiveMarkerOnListItemHover}
+          />
         </Sider>
       </Layout>
     </Layout>

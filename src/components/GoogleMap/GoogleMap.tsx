@@ -13,7 +13,12 @@ const DEFAULT_CENTER = { lat: 53.893009, lng: 27.567444 };
 const DEFAULT_ZOOM = 4;
 const DEFAULT_SIZE = { width: 1315, height: 800 };
 
-export const GoogleMap: React.FC<MapInterface> = ({ markers, currentPosition, setListOnBoundsChanged }) => {
+export const GoogleMap: React.FC<MapInterface> = ({
+  markers,
+  currentPosition,
+  setListOnBoundsChanged,
+  activeMarker,
+}) => {
   const [isFilterOnBoundsChangeEnabled, setIsFilterOnBoundsChangeEnabled] = useState(true);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [center, setCenter] = useState(DEFAULT_CENTER);
@@ -56,8 +61,15 @@ export const GoogleMap: React.FC<MapInterface> = ({ markers, currentPosition, se
         onChange={handleBoundsChange}
       >
         {currentPosition && <Marker lat={currentPosition.lat} lng={currentPosition.lng} avatar={markerImg} />}
-        {markers.map(({ id, lat, lng, avatar }) => (
-          <Marker lat={lat} lng={lng} key={id} avatar={avatar} />
+        {markers.map(({ id, lat, lng, avatar, first_name, last_name }) => (
+          <Marker
+            lat={lat}
+            lng={lng}
+            key={id}
+            avatar={avatar}
+            text={`${first_name} ${last_name}`}
+            isActive={activeMarker === id}
+          />
         ))}
       </GoogleMapReact>
     </div>

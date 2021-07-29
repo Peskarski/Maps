@@ -3,6 +3,10 @@
   margin: auto;
 }
 
+.list li {
+ cursor: pointer
+}
+
 .list li .info {
   width: 90%;
   display: flex; 

@@ -9,7 +9,12 @@ const header = 'Robots';
 const DEFAULT_CURRENT_PAGE = 1;
 const ITEMS_PER_PAGE = 10;
 
-export const ItemsList: React.FC<ListInterface> = ({ list, currentPosition, setMarkersOnListChange }) => {
+export const ItemsList: React.FC<ListInterface> = ({
+  list,
+  currentPosition,
+  setMarkersOnListChange,
+  setActiveMarkerOnHover,
+}) => {
   const [renderedList, setRenderedList] = useState<ListItem[]>([]);
   const [currentPage, setCurrentPage] = useState(DEFAULT_CURRENT_PAGE);
 
@@ -53,7 +58,7 @@ export const ItemsList: React.FC<ListInterface> = ({ list, currentPosition, setM
         itemLayout="horizontal"
         dataSource={renderedList}
         renderItem={(item) => (
-          <List.Item>
+          <List.Item onMouseOver={() => setActiveMarkerOnHover(item)} onMouseLeave={() => setActiveMarkerOnHover(null)}>
             <List.Item.Meta avatar={<Avatar src={item.avatar} />} />
             <div className={styles.info}>
               <div className={styles.name}>
