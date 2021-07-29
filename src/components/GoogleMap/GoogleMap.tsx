@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GoogleMapReact, { fitBounds } from 'google-map-react';
 import { Checkbox } from 'antd';
-import { MapInterface, Bounds } from './types';
+import { MapInterface, Bounds, Size } from './types';
 import { Marker } from './Marker';
 import styles from './GoogleMap.module.css';
 import robots from '../../MOCK_DATA.json';
@@ -17,9 +17,11 @@ export const GoogleMap: React.FC<MapInterface> = ({ markers, currentPosition, se
   const [isFilterOnBoundsChangeEnabled, setIsFilterOnBoundsChangeEnabled] = useState(true);
   const [zoom, setZoom] = useState(DEFAULT_ZOOM);
   const [center, setCenter] = useState(DEFAULT_CENTER);
+  const [mapSize, setMapSize] = useState(DEFAULT_SIZE);
 
-  const handleBoundsChange = ({ bounds, zoom }: { bounds: Bounds; zoom: number }) => {
+  const handleBoundsChange = ({ bounds, zoom, size }: { bounds: Bounds; zoom: number; size: Size }) => {
     setZoom(zoom);
+    setMapSize(size);
     if (isFilterOnBoundsChangeEnabled) {
       const markersOnMap = robots.filter(({ lat, lng }) => isPointInsideBounds({ lat, lng }, bounds));
       setListOnBoundsChanged(markersOnMap);
@@ -29,7 +31,7 @@ export const GoogleMap: React.FC<MapInterface> = ({ markers, currentPosition, se
   useEffect(() => {
     if (!isFilterOnBoundsChangeEnabled) {
       const bounds = getCoordinatesForFitBounds(markers);
-      const { zoom, center } = fitBounds(bounds, DEFAULT_SIZE);
+      const { zoom, center } = fitBounds(bounds, mapSize);
       setZoom(zoom);
       setCenter(center);
     }

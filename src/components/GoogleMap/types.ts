@@ -15,3 +15,8 @@ export type Bounds = {
   ne: Coordinates;
   sw: Coordinates;
 };
+
+export type Size = {
+  width: number;
+  height: number;
+};
