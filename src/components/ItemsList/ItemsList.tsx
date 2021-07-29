@@ -30,7 +30,7 @@ export const ItemsList: React.FC<ListInterface> = ({ list, currentPosition, setM
 
   useEffect(() => {
     changeMarkersAfterListChanged();
-  }, [currentPage]);
+  }, [currentPage, currentPosition]);
 
   useEffect(() => {
     setCurrentPage(DEFAULT_CURRENT_PAGE);
