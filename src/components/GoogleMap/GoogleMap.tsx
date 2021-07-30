@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import GoogleMapReact, { fitBounds } from 'google-map-react';
 import { Checkbox } from 'antd';
-import { MapInterface, Bounds, Size } from './types';
+import { MapInterface, MapData } from './types';
 import { Marker } from './Marker';
 import styles from './GoogleMap.module.css';
 import robots from '../../MOCK_DATA.json';
@@ -24,7 +24,7 @@ export const GoogleMap: React.FC<MapInterface> = ({
   const [center, setCenter] = useState(DEFAULT_CENTER);
   const [mapSize, setMapSize] = useState(DEFAULT_SIZE);
 
-  const handleBoundsChange = ({ bounds, zoom, size }: { bounds: Bounds; zoom: number; size: Size }) => {
+  const handleBoundsChange = ({ bounds, zoom, size }: MapData) => {
     setZoom(zoom);
     setMapSize(size);
     if (isFilterOnBoundsChangeEnabled) {

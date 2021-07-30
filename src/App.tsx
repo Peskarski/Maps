@@ -17,13 +17,13 @@ const App: React.FC = () => {
   const [currentPosition, setCurrentPosition] = useState<Coordinates | null>(null);
   const [activeMarker, setActiveMarker] = useState<number | null>(null);
 
-  const gotPositionSuccessfully = (pos: any) => {
+  const gotGetUserPosition = (pos: GeolocationPosition) => {
     const { latitude, longitude } = pos.coords;
     setCurrentPosition({ lat: latitude, lng: longitude });
   };
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(gotPositionSuccessfully);
+    navigator.geolocation.getCurrentPosition(gotGetUserPosition);
   }, []);
 
   const setListOnBoundsChanged = (markers: ListItem[]) => {

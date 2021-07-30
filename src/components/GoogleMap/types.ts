@@ -21,3 +21,9 @@ export type Size = {
   width: number;
   height: number;
 };
+
+export type MapData = {
+  bounds: Bounds;
+  zoom: number;
+  size: Size;
+};
