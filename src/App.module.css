@@ -1,0 +1,15 @@
+.layout {
+  margin: 16px 40px;
+}
+
+.header {
+  text-align: center;
+}
+
+.header h1 {
+   color: white;
+}
+
+.sider {
+  text-align: center;
+}

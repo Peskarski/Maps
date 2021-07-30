@@ -1,0 +1,19 @@
+.list ul {
+  width: 70%;
+  margin: auto;
+}
+
+.list li {
+ cursor: pointer
+}
+
+.list li .info {
+  width: 90%;
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.list li .info p {
+  margin: auto 20px;
+}
